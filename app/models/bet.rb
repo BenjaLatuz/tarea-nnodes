@@ -13,11 +13,11 @@ class Bet < ApplicationRecord
   def set_random_color
     random = rand(100)
     self.color = if random < 2
-                   'verde'
-                 elsif random < 51
-                   'rojo'
-                 else
-                   'negro'
-                 end
+                   "verde"
+    elsif random < 51
+                   "rojo"
+    else
+                   "negro"
+    end
   end
 end

@@ -1,6 +1,6 @@
 class Round < ApplicationRecord
   has_many :bets, dependent: :destroy
-  
+
   COLORS = %w[verde rojo negro].freeze
 
   validates :result, presence: true, inclusion: { in: COLORS }
@@ -14,12 +14,12 @@ class Round < ApplicationRecord
   def set_result
     random = rand(100)
     self.result = if random < 2
-                    'verde'
-                  elsif random < 51
-                    'rojo'
-                  else
-                    'negro'
-                  end
+                    "verde"
+    elsif random < 51
+                    "rojo"
+    else
+                    "negro"
+    end
   end
 
   def set_played_at
