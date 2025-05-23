@@ -1,4 +1,6 @@
 class Player < ApplicationRecord
+  has_many :bets, dependent: :destroy
+  
   validates :name, presence: true
   validates :money, numericality: { greater_than_or_equal_to: 0 }
   

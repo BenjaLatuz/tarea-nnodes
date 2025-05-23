@@ -1,4 +1,6 @@
 class Round < ApplicationRecord
+  has_many :bets, dependent: :destroy
+  
   COLORS = %w[verde rojo negro].freeze
 
   validates :result, presence: true, inclusion: { in: COLORS }
