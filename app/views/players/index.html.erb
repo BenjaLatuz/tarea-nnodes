@@ -2,15 +2,35 @@
 
 <% content_for :title, "Players" %>
 
-<h1>Players</h1>
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Jugadores</h1>
+  </div>
 
-<div id="players">
-  <% @players.each do |player| %>
-    <%= render player %>
-    <p>
-      <%= link_to "Show this player", player %>
-    </p>
-  <% end %>
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Nombre
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Dinero Actual
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @players.each do |player| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="font-medium text-gray-900"><%= player.name %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900">$<%= number_with_delimiter(player.money) %></div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to "New player", new_player_path %>
