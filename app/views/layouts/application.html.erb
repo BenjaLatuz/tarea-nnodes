@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
   <head>
-    <title><%= content_for(:title) || "Tarea Nnode" %></title>
+    <title><%= content_for(:title) || "Ruleta del Clima" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -18,11 +18,28 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="h-full">
+    <div class="min-h-full">
+      <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex h-16 items-center justify-between">
+            <div class="flex items-center">
+              <div class="text-white text-xl font-bold">Ruleta del Clima</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
