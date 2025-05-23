@@ -16,8 +16,17 @@ class Bet < ApplicationRecord
   def calculate_amount
     return self.amount = player.money.to_i if player.money <= 5000
 
-    percentage = BetCalculatorService.calculate_percentage_with_weather
+    percentage = calculate_percentage_based_on_temperature
     self.amount = (player.money * percentage / 100.0).round.to_i
+  end
+
+  def calculate_percentage_based_on_temperature
+    temp = round.max_temperature
+    if temp > 23
+      rand(3..7)
+    else
+      rand(5..12)
+    end
   end
 
   def set_random_color

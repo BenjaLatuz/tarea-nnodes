@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_031942) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_23_222253) do
   create_table "bets", force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "round_id", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_031942) do
     t.datetime "played_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "max_temperature"
   end
 
   add_foreign_key "bets", "players"
