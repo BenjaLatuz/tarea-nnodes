@@ -1,8 +1,6 @@
 # encoding: utf-8
 
 class BetCalculatorService
-  require_relative 'weather_service'
-
   def self.calculate_percentage(temperature)
     if temperature > 23
       rand(3..7)  # 3-7% si la temperatura es mayor a 23°C

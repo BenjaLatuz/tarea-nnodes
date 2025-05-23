@@ -23,8 +23,8 @@ class WeatherService
         }
       end
 
-      puts "\nTemperaturas pronosticadas:"
-      temps.each { |t| puts "#{t[:time]}: #{t[:temp]}°C" }
+      #puts "\nTemperaturas pronosticadas:"
+      #temps.each { |t| puts "#{t[:time]}: #{t[:temp]}°C" }
       
       temps.map { |t| t[:temp] }.max
     else
@@ -32,3 +32,4 @@ class WeatherService
     end
   end
 end
+ 
