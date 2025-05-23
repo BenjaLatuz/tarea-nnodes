@@ -1,4 +1,4 @@
-<% content_for :title, "New player" %>
+<% content_for :title, "Nuevo Jugador" %>
 
 <div class="container mx-auto px-4 py-8">
   <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
@@ -56,7 +56,7 @@
 
         <div class="pt-4">
           <div class="flex justify-end space-x-3">
-            <%= link_to "Cancelar", root_path, 
+            <%= link_to "Cancelar", players_path, 
                 class: "inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
             
             <%= form.submit "Crear Jugador", 
@@ -66,10 +66,4 @@
       <% end %>
     </div>
   </div>
-</div>
-
-<br>
-
-<div>
-  <%= link_to "Back to players", players_path %>
 </div>
