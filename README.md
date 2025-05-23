@@ -26,7 +26,7 @@ Este sistema simula una ruleta donde:
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/tarea-nnode.git
+git clone https://github.com/BenjaLatuz/tarea-nnode.git
 cd tarea-nnode
 ```
 
@@ -50,7 +50,7 @@ rails tailwindcss:build
 
 Hay dos formas de ejecutar el servidor de desarrollo:
 
-### 1. Desarrollo con Auto-reload de CSS (Recomendado)
+### 1. Desarrollo con Auto-reload de CSS
 
 ```bash
 bin/dev
@@ -60,31 +60,16 @@ Este comando inicia dos procesos:
 - El servidor de Rails en http://localhost:3000
 - El compilador de Tailwind CSS en modo watch (recompila automáticamente cuando hay cambios)
 
-Usa este método cuando estés:
-- Desarrollando la interfaz
-- Modificando estilos
-- Haciendo cambios frecuentes en las vistas
-
 ### 2. Desarrollo Simple
 
 ```bash
+rails tailwindcss:build
 rails server
 ```
 
 Este método funciona si ya has precompilado los assets de Tailwind (`rails tailwindcss:build`). 
-Úsalo cuando:
-- No estés modificando estilos
-- Quieras un proceso más ligero
-- Estés trabajando principalmente en la lógica de negocio
 
 > **Nota**: Si haces cambios en los estilos y usas `rails server`, necesitarás ejecutar `rails tailwindcss:build` para ver los cambios.
-
-## Características Principales
-
-- Sistema automático de rondas cada 3 minutos
-- Integración con API del clima para determinar porcentajes de apuesta
-- Interfaz visual para seguimiento de rondas y apuestas
-- Cálculo automático de ganancias/pérdidas
 
 ## Estructura del Proyecto
 
