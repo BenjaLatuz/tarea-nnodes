@@ -1,10 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @player.name %>
 
-<%= render @player %>
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Jugador: <%= @player.name %></h1>
+    <%= link_to edit_player_path(@player), class: "bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2 text-sm font-medium transition-colors inline-flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+      </svg>
+      Editar Jugador
+    <% end %>
+  </div>
 
-<div>
-  <%= link_to "Edit this player", edit_player_path(@player) %> |
-  <%= link_to "Back to players", players_path %>
+  <!-- Información Principal -->
+  <div class="bg-white shadow rounded-lg overflow-hidden mb-8">
+    <div class="px-6 py-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500">Nombre</h3>
+          <p class="mt-1 text-lg font-semibold text-gray-900"><%= @player.name %></p>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium text-gray-500">Dinero Actual</h3>
+          <p class="mt-1 text-lg font-semibold text-gray-900">$<%= number_with_delimiter(@player.money) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <%= button_to "Destroy this player", @player, method: :delete %>
+  <div class="mt-6">
+    <%= link_to "Volver a Jugadores", players_path, class: "text-green-600 hover:text-green-900 font-medium" %>
+  </div>
 </div>

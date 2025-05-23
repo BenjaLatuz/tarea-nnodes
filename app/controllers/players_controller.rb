@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to players_path, notice: "Jugador creado exitosamente" }
+        format.html { redirect_to player_path(@player), notice: "Jugador creado exitosamente" }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to @player, notice: "Player was successfully updated." }
+        format.html { redirect_to player_path(@player), notice: "Jugador actualizado exitosamente" }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit, status: :unprocessable_entity }
