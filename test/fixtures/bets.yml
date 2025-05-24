@@ -3,13 +3,13 @@
 one:
   player: one
   round: one
-  amount: 9.99
-  color: MyString
-  profit: 9.99
+  amount: 1000
+  color: negro
+  profit: 2000
 
 two:
   player: two
-  round: two
-  amount: 9.99
-  color: MyString
-  profit: 9.99
+  round: one
+  amount: 500
+  color: rojo
+  profit: -500

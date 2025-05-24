@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  result: MyString
-  played_at: 2025-05-22 23:01:21
+  result: negro
+  played_at: <%= Time.current %>
+  max_temperature: 20.5
 
 two:
-  result: MyString
-  played_at: 2025-05-22 23:01:21
+  result: rojo
+  played_at: <%= Time.current %>
+  max_temperature: 24.5
