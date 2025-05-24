@@ -48,17 +48,4 @@ class RoundGeneratorServiceTest < ActiveSupport::TestCase
       end
     end
   end
-
-  test "genera colores aleatorios con distribución correcta" do
-    colores = 1000.times.map { RoundGeneratorService.send(:generate_random_color) }
-    
-    verdes = colores.count("verde")
-    rojos = colores.count("rojo")
-    negros = colores.count("negro")
-    
-    # Verificar aproximadamente la distribución 2% verde, 49% rojo, 49% negro
-    assert verdes.between?(10, 30), "Verde debe ser ~2% (20 ±10)"
-    assert rojos.between?(440, 540), "Rojo debe ser ~49% (490 ±50)"
-    assert negros.between?(440, 540), "Negro debe ser ~49% (490 ±50)"
-  end
 end 

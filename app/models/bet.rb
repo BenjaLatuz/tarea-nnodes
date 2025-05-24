@@ -9,16 +9,8 @@ class Bet < ApplicationRecord
   validates :profit, numericality: true, allow_nil: true
 
   before_validation :set_random_color, on: :create
-  before_validation :calculate_amount, on: :create
 
   private
-
-  def calculate_amount
-    return self.amount = player.money.to_i if player.money <= 5000
-
-    percentage = BetCalculatorService.calculate_percentage(round.max_temperature)
-    self.amount = (player.money * percentage / 100.0).round.to_i
-  end
 
   def set_random_color
     return if color.present?  # No cambiar si ya tiene color

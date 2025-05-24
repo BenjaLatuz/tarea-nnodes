@@ -16,11 +16,6 @@ class BetCalculatorService
     (player.money * percentage / 100.0).round.to_i
   end
 
-  def self.calculate_percentage_with_weather
-    max_temp = WeatherService.get_max_temperature
-    calculate_percentage(max_temp)
-  end
-
   def self.calculate_profit(bet, round_result)
     return 0 unless bet && round_result
 

@@ -14,33 +14,16 @@ class RoundGeneratorService
       active_players.each do |player|
         bet = round.bets.create!(
           player: player,
-          color: generate_random_color,
           amount: BetCalculatorService.calculate_bet_amount(player, round.max_temperature)
         )
         
-        # Calcular y actualizar el profit inmediatamente
-        profit = BetCalculatorService.calculate_profit(bet, round.result)
-        bet.update!(profit: profit)
-        player.update!(money: player.money + profit)
+        BetCalculatorService.update_player_money!(bet, round.result)
         
-        Rails.logger.info "Apuesta #{bet.id}: jugador=#{player.name}, color=#{bet.color}, monto=#{bet.amount}, profit=#{profit}"
+        Rails.logger.info "Apuesta #{bet.id}: jugador=#{player.name}, color=#{bet.color}, monto=#{bet.amount}, profit=#{bet.profit}"
       end
 
       Rails.logger.info "Round #{round.id} finalizada con #{round.bets.count} apuestas"
       round
-    end
-  end
-
-  private
-
-  def self.generate_random_color
-    random = rand(100)
-    if random < 2
-      "verde"
-    elsif random < 51
-      "rojo"
-    else
-      "negro"
     end
   end
 end 
