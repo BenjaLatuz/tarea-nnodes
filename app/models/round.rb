@@ -1,5 +1,6 @@
 class Round < ApplicationRecord
   require_dependency 'weather_service'
+  require_dependency 'bet_calculator_service'
 
   has_many :bets, dependent: :destroy
 
@@ -9,7 +10,7 @@ class Round < ApplicationRecord
   validates :played_at, presence: true
   validates :max_temperature, presence: true, numericality: true
 
-  before_validation :set_result
+  before_validation :set_result, on: :create
   before_validation :set_played_at, on: :create
   before_validation :set_max_temperature, on: :create
 
@@ -24,6 +25,7 @@ class Round < ApplicationRecord
     else
                     "negro"
     end
+    Rails.logger.info "Round #{id || 'nueva'}: Resultado establecido como #{result}"
   end
 
   def set_played_at

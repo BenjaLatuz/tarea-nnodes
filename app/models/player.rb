@@ -1,6 +1,4 @@
 class Player < ApplicationRecord
-  require_dependency 'bet_calculator_service'
-  
   has_many :bets, dependent: :destroy
 
   validates :name, presence: true

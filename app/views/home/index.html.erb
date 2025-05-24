@@ -1,6 +1,31 @@
+<!-- Notificaciones -->
+<% if notice %>
+  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <span class="block sm:inline"><%= notice %></span>
+  </div>
+<% end %>
+
+<% if alert %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+    <span class="block sm:inline"><%= alert %></span>
+  </div>
+<% end %>
+
 <div class="container mx-auto px-4 py-8">
+  <!-- Botón para generar nueva ronda -->
+  <div class="mb-8 flex justify-between items-center">
+    <h2 class="text-2xl font-bold">Historial de Rondas</h2>
+    <%= button_to rounds_path, 
+        method: :post,
+        class: "bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+      </svg>
+      Generar Nueva Ronda
+    <% end %>
+  </div>
+
   <!-- Sección de Rondas -->
-  <h2 class="text-2xl font-bold mb-4">Historial de Rondas</h2>
   <div class="space-y-8">
     <% @rounds.each do |round| %>
       <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -51,26 +76,35 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <% round.bets.each do |bet| %>
-                <tr>
+              <% Player.all.each do |player| %>
+                <% bet = round.bets.find_by(player: player) %>
+                <tr class="<%= bet ? '' : 'bg-gray-50' %>">
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="font-medium text-gray-900"><%= bet.player.name %></div>
+                    <div class="font-medium text-gray-900"><%= player.name %></div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-gray-900">$<%= number_with_delimiter(bet.amount) %></div>
+                    <% if bet %>
+                      <div class="text-gray-900">$<%= number_with_delimiter(bet.amount) %></div>
+                    <% else %>
+                      <div class="text-gray-500 italic">No participó</div>
+                    <% end %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-2 py-1 text-xs font-medium rounded text-white <%= bet.color == 'verde' ? 'bg-green-500' : (bet.color == 'rojo' ? 'bg-red-500' : 'bg-black') %>">
-                      <%= bet.color.capitalize %>
-                    </span>
+                    <% if bet %>
+                      <span class="px-2 py-1 text-xs font-medium rounded text-white <%= bet.color == 'verde' ? 'bg-green-500' : (bet.color == 'rojo' ? 'bg-red-500' : 'bg-black') %>">
+                        <%= bet.color.capitalize %>
+                      </span>
+                    <% else %>
+                      <span class="text-gray-500">-</span>
+                    <% end %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <% if bet.profit %>
+                    <% if bet&.profit %>
                       <span class="<%= bet.profit >= 0 ? 'text-green-600' : 'text-red-600' %> font-medium">
                         <%= bet.profit >= 0 ? '+' : '-' %>$<%= number_with_delimiter(bet.profit.abs) %>
                       </span>
                     <% else %>
-                      <span class="text-gray-500">Pendiente</span>
+                      <span class="text-gray-500">-</span>
                     <% end %>
                   </td>
                 </tr>
