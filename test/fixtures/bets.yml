@@ -4,12 +4,12 @@ one:
   player: one
   round: one
   amount: 1000
-  color: negro
+  color: rojo
   profit: 2000
 
 two:
   player: two
   round: one
   amount: 500
-  color: rojo
+  color: negro
   profit: -500

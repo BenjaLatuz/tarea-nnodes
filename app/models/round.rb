@@ -17,6 +17,7 @@ class Round < ApplicationRecord
   private
 
   def set_result
+    return if result.present?
     random = rand(100)
     self.result = if random < 2
                     "verde"
@@ -33,6 +34,7 @@ class Round < ApplicationRecord
   end
 
   def set_max_temperature
+    return if max_temperature.present?
     self.max_temperature = WeatherService.get_max_temperature
   end
 end

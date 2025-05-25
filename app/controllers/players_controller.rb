@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to player_path(@player), notice: "Jugador creado exitosamente" }
+        format.html { redirect_to player_url(@player), notice: "Jugador creado exitosamente" }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to player_path(@player), notice: "Jugador actualizado exitosamente" }
+        format.html { redirect_to player_url(@player), notice: "Jugador actualizado exitosamente" }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class PlayersController < ApplicationController
     @player.destroy!
 
     respond_to do |format|
-      format.html { redirect_to players_path, status: :see_other, notice: "Player was successfully destroyed." }
+      format.html { redirect_to players_url, notice: "Jugador eliminado exitosamente" }
       format.json { head :no_content }
     end
   end
@@ -60,7 +60,7 @@ class PlayersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params.require(:id))
+      @player = Player.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
