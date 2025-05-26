@@ -10,6 +10,10 @@ Sidekiq.configure_server do |config|
       'generate_round' => {
         'every' => ['3m', { first_in: '3m' }],  # Cada 3 minutos, empezando 3 minutos después de iniciar
         'class' => 'GenerateRoundJob'
+      },
+      'update_players_money' => {
+        'cron' => '0 * * * *',  # Se ejecuta al inicio de cada hora (minuto 0)
+        'class' => 'UpdatePlayersMoneyJob'
       }
     }
     SidekiqScheduler::Scheduler.instance.reload_schedule!
