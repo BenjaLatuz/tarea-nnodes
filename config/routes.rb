@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :players
+  resources :players do
+    collection do
+      post :update_all_money
+    end
+  end
   resources :rounds, only: [:create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

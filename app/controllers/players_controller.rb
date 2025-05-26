@@ -57,6 +57,11 @@ class PlayersController < ApplicationController
     end
   end
 
+  def update_all_money
+    PlayerMoneyService.update_all_players_money!
+    redirect_to root_path, notice: "Dinero actualizado exitosamente para todos los jugadores"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
