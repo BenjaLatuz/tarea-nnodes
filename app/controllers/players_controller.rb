@@ -59,7 +59,7 @@ class PlayersController < ApplicationController
 
   def update_all_money
     PlayerMoneyService.update_all_players_money!
-    redirect_to root_path, notice: "Dinero actualizado exitosamente para todos los jugadores"
+    redirect_to players_path, notice: "Dinero actualizado exitosamente para todos los jugadores"
   end
 
   private
