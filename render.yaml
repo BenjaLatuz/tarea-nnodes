@@ -3,7 +3,7 @@ services:
     name: tarea-nnodes
     env: ruby
     buildCommand: bundle install
-    startCommand: bundle exec rails server -p $PORT
+    startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: DATABASE_URL
         fromDatabase:
